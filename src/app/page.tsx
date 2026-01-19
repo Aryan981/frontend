@@ -48,8 +48,9 @@ export default function CareerCompanion() {
       setReport(analysisRes.data);
       setStep('results');
     } catch (err: any) {
-      console.error(err);
-      setError(err.response?.data?.detail || "Something went wrong during analysis. Please try again.");
+      console.error("Analysis Error Response:", err.response?.data);
+      console.error("Full Axios Error:", err);
+      setError(err.response?.data?.detail || "Something went wrong during analysis. Please check if the backend is running and the API key is set.");
       setStep('upload');
     }
   };
@@ -230,8 +231,8 @@ export default function CareerCompanion() {
                         <div className="flex justify-between items-center">
                           <span className="font-bold text-sm">{gap.skill_name}</span>
                           <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase ${gap.priority === 'high' ? 'bg-red-100 text-red-600' :
-                              gap.priority === 'medium' ? 'bg-orange-100 text-orange-600' :
-                                'bg-blue-100 text-blue-600'
+                            gap.priority === 'medium' ? 'bg-orange-100 text-orange-600' :
+                              'bg-blue-100 text-blue-600'
                             }`}>
                             {gap.priority}
                           </span>
